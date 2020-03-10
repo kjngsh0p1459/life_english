@@ -1,11 +1,16 @@
-import 'package:life_english/src/models/item_model.dart';
-import 'package:life_english/src/models/trailer_model.dart';
-import 'package:life_english/src/resources/movie_api_provider.dart';
+import 'dart:async';
+import 'movie_api_provider.dart';
+import '../models/item_model.dart';
+import '../models/trailer_model.dart';
+import 'package:inject/inject.dart';
 
 class Repository {
-  final MovieApiProvider movieApiProvider = MovieApiProvider();
+  final MovieApiProvider moviesApiProvider;
 
-  Future<ItemModel> fetchAllMovie() => movieApiProvider.fetchMovieList();
+  @provide
+  Repository(this.moviesApiProvider);
 
-  Future<TrailerModel> fetchTrailers(int movieId) => movieApiProvider.fetchTrailer(movieId);
+  Future<ItemModel> fetchAllMovies() => moviesApiProvider.fetchMovieList();
+
+  Future<TrailerModel> fetchTrailers(int movieId) => moviesApiProvider.fetchTrailer(movieId);
 }
