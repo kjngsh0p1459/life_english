@@ -18,6 +18,7 @@ dependencies:
     git:
       url: https://github.com/google/inject.dart.git
       path: package/inject
+      ref: 7c3cbf6
 
 dependency_overrides:
   analyzer: ^0.39.4
@@ -30,7 +31,9 @@ dev_dependencies:
     git:
       url: https://github.com/google/inject.dart.git
       path: package/inject_generator
-  mockito: ^4.1.1
+      ref: 7c3cbf6
+
+  mockito: ^4.1.0
 
 flutter:
   uses-material-design: true

@@ -144,25 +144,16 @@ class MovieDetailState extends State<MovieDetail> {
                       Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
                       StreamBuilder(
                         stream: widget.bloc.movieTrailers,
-                        builder: (context,
-                            AsyncSnapshot<Future<TrailerModel>> snapshot) {
+                        builder:
+                            (context, AsyncSnapshot<TrailerModel> snapshot) {
                           if (snapshot.hasData) {
-                            return FutureBuilder(
-                              future: snapshot.data,
-                              builder: (context,
-                                  AsyncSnapshot<TrailerModel> itemSnapShot) {
-                                if (itemSnapShot.hasData) {
-                                  if (itemSnapShot.data.results.length > 0)
-                                    return trailerLayout(itemSnapShot.data);
-                                  else
-                                    return noTrailer(itemSnapShot.data);
-                                } else {
-                                  return Center(
-                                      child: CircularProgressIndicator());
-                                }
-                              },
-                            );
+                            if (snapshot.data.results.length > 0)
+                              return trailerLayout(snapshot.data);
+                            else
+                              return noTrailer(snapshot.data);
                           } else {
+                            debugPrint(
+                                "${snapshot.connectionState.toString()}");
                             return Center(child: CircularProgressIndicator());
                           }
                         },
